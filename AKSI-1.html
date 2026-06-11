@@ -1,0 +1,1093 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head><script src="/_sdk/telemetry_sdk.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Modul Dampak Sosial Informatika - Kelas VIII</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { jakarta: ['Plus Jakarta Sans', 'sans-serif'] },
+      colors: {
+        primary: { 50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af',900:'#1e3a8a' },
+        surface: '#f8fafc',
+        card: '#ffffff'
+      }
+    }
+  }
+}
+</script>
+  <style>
+html, body { height: 100%; margin: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+.app-wrapper { height: 100%; overflow: auto; }
+.sidebar-nav { scrollbar-width: thin; }
+.fade-in { animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.card-hover { transition: all 0.2s ease; }
+.card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,99,235,0.12); }
+.progress-bar { transition: width 0.5s ease; }
+.quiz-option { transition: all 0.15s ease; }
+.quiz-option:hover { border-color: #3b82f6; background: #eff6ff; }
+.quiz-option.selected { border-color: #2563eb; background: #dbeafe; }
+.quiz-option.correct { border-color: #16a34a; background: #dcfce7; }
+.quiz-option.wrong { border-color: #dc2626; background: #fee2e2; }
+.tab-active { border-bottom: 3px solid #2563eb; color: #2563eb; font-weight: 600; }
+</style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full bg-slate-50">
+  <div class="app-wrapper flex flex-col lg:flex-row h-full" id="app"><!-- Sidebar -->
+   <aside id="sidebar" class="hidden lg:flex flex-col w-72 bg-white border-r border-slate-200 h-full flex-shrink-0">
+    <div class="p-5 border-b border-slate-100">
+     <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center"><i data-lucide="book-open" class="w-5 h-5 text-white"></i>
+      </div>
+      <div>
+       <h1 class="text-sm font-bold text-slate-800" id="sidebar-title">E-Modul DSI</h1>
+       <p class="text-xs text-slate-500">Informatika Kelas VIII</p>
+      </div>
+     </div>
+    </div>
+    <nav class="flex-1 overflow-y-auto sidebar-nav p-3 space-y-1"><button onclick="navigate('beranda')" data-nav="beranda" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition"> <i data-lucide="home" class="w-4 h-4"></i> Beranda </button> <button onclick="navigate('tentang')" data-nav="tentang" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition"> <i data-lucide="info" class="w-4 h-4"></i> Tentang Modul </button>
+     <div class="pt-2 pb-1 px-3">
+      <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Materi</span>
+     </div><button onclick="navigate('unit1')" data-nav="unit1" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition"> <span class="w-5 h-5 rounded bg-blue-100 text-blue-700 text-[10px] font-bold flex items-center justify-center">1</span> Media Sosial </button> <button onclick="navigate('unit2')" data-nav="unit2" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition"> <span class="w-5 h-5 rounded bg-blue-100 text-blue-700 text-[10px] font-bold flex items-center justify-center">2</span> Keterbukaan Info </button> <button onclick="navigate('unit3')" data-nav="unit3" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition"> <span class="w-5 h-5 rounded bg-blue-100 text-blue-700 text-[10px] font-bold flex items-center justify-center">3</span> Info Publik &amp; Privat </button> <button onclick="navigate('unit4')" data-nav="unit4" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition"> <span class="w-5 h-5 rounded bg-blue-100 text-blue-700 text-[10px] font-bold flex items-center justify-center">4</span> Etika Digital </button> <button onclick="navigate('unit5')" data-nav="unit5" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition"> <span class="w-5 h-5 rounded bg-blue-100 text-blue-700 text-[10px] font-bold flex items-center justify-center">5</span> Keamanan Digital </button>
+     <div class="pt-2 pb-1 px-3">
+      <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Aktivitas</span>
+     </div><button onclick="navigate('kasus')" data-nav="kasus" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition"> <i data-lucide="search" class="w-4 h-4"></i> Kasus Digital </button> <button onclick="navigate('aksi')" data-nav="aksi" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition"> <i data-lucide="zap" class="w-4 h-4"></i> LKPD AKSI </button> <button onclick="navigate('kuis')" data-nav="kuis" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition"> <i data-lucide="help-circle" class="w-4 h-4"></i> Kuis HOTS </button> <button onclick="navigate('proyek')" data-nav="proyek" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition"> <i data-lucide="rocket" class="w-4 h-4"></i> Proyek Digital </button> <button onclick="navigate('dashboard')" data-nav="dashboard" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-700 transition"> <i data-lucide="bar-chart-2" class="w-4 h-4"></i> Dashboard </button>
+    </nav>
+   </aside><!-- Main Content -->
+   <main class="flex-1 h-full overflow-y-auto"><!-- Mobile Header -->
+    <header class="lg:hidden sticky top-0 z-50 bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between"><button onclick="toggleMobile()" class="p-2 rounded-lg hover:bg-slate-100"><i data-lucide="menu" class="w-5 h-5"></i></button> <span class="font-bold text-sm text-slate-800">E-Modul DSI</span> <button onclick="navigate('dashboard')" class="p-2 rounded-lg hover:bg-slate-100"><i data-lucide="bar-chart-2" class="w-5 h-5"></i></button>
+    </header><!-- Mobile Nav Overlay -->
+    <div id="mobile-nav" class="hidden fixed inset-0 z-50 lg:hidden">
+     <div class="absolute inset-0 bg-black/40" onclick="toggleMobile()"></div>
+     <div class="absolute left-0 top-0 bottom-0 w-72 bg-white overflow-y-auto p-4 space-y-2">
+      <div class="flex justify-between items-center mb-4"><span class="font-bold text-slate-800">Menu</span> <button onclick="toggleMobile()" class="p-1 rounded hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div><button onclick="navigate('beranda');toggleMobile()" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-blue-50">🏠 Beranda</button> <button onclick="navigate('tentang');toggleMobile()" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-blue-50">ℹ️ Tentang Modul</button> <button onclick="navigate('unit1');toggleMobile()" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-blue-50">📱 Unit 1: Media Sosial</button> <button onclick="navigate('unit2');toggleMobile()" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-blue-50">🌐 Unit 2: Keterbukaan Info</button> <button onclick="navigate('unit3');toggleMobile()" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-blue-50">🔒 Unit 3: Publik &amp; Privat</button> <button onclick="navigate('unit4');toggleMobile()" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-blue-50">⚖️ Unit 4: Etika Digital</button> <button onclick="navigate('unit5');toggleMobile()" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-blue-50">🛡️ Unit 5: Keamanan Digital</button> <button onclick="navigate('kasus');toggleMobile()" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-blue-50">🔍 Kasus Digital</button> <button onclick="navigate('aksi');toggleMobile()" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-blue-50">⚡ LKPD AKSI</button> <button onclick="navigate('kuis');toggleMobile()" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-blue-50">❓ Kuis HOTS</button> <button onclick="navigate('proyek');toggleMobile()" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-blue-50">🚀 Proyek Digital</button> <button onclick="navigate('dashboard');toggleMobile()" class="w-full text-left px-3 py-2 rounded-lg text-sm hover:bg-blue-50">📊 Dashboard</button>
+     </div>
+    </div><!-- Content Area -->
+    <div id="content" class="p-4 lg:p-8 max-w-5xl mx-auto"></div>
+   </main>
+  </div>
+  <script>
+// ===== APP STATE =====
+let currentPage = 'beranda';
+let appData = [];
+let quizState = { current: 0, answers: [], submitted: false, score: 0 };
+
+const defaultConfig = {
+  module_title: 'Dampak Sosial Informatika',
+  school_name: 'SMP Negeri 1',
+  teacher_name: 'Guru Informatika',
+  primary_color: '#2563eb',
+  surface_color: '#f8fafc',
+  text_color: '#1e293b',
+  accent_color: '#3b82f6',
+  secondary_color: '#64748b',
+  font_family: 'Plus Jakarta Sans',
+  font_size: 14
+};
+
+// ===== CONTENT DATA =====
+const units = [
+  {
+    id: 'unit1', title: 'Media Sosial dan Informasi Digital', icon: '📱',
+    content: `
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">Unit 1: Media Sosial dan Informasi Digital</h2>
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
+        <p class="text-sm text-blue-800"><strong>Tujuan Pembelajaran:</strong> Peserta didik mampu memahami ketersediaan data dan informasi melalui aplikasi media sosial.</p>
+      </div>
+      <div class="space-y-4 text-slate-700 leading-relaxed">
+        <h3 class="text-lg font-semibold text-slate-800">A. Pengertian Media Sosial</h3>
+        <p>Media sosial adalah platform digital yang memungkinkan pengguna untuk membuat, berbagi, dan berinteraksi dengan konten serta pengguna lain secara daring. Contoh: Instagram, TikTok, YouTube, WhatsApp, X (Twitter).</p>
+        
+        <div class="bg-white border border-slate-200 rounded-xl p-5 my-4">
+          <h4 class="font-semibold text-slate-800 mb-3">📊 Fakta Menarik</h4>
+          <ul class="space-y-2 text-sm">
+            <li>• Rata-rata remaja Indonesia menghabiskan <strong>3-4 jam/hari</strong> di media sosial</li>
+            <li>• Lebih dari <strong>70% siswa SMP</strong> memiliki akun media sosial aktif</li>
+            <li>• Setiap menit, 500 jam video diunggah ke YouTube</li>
+            <li>• Indonesia pengguna TikTok terbesar ke-2 di dunia</li>
+          </ul>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-800">B. Jenis Data di Media Sosial</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-4">
+          <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+            <h5 class="font-semibold text-green-800 text-sm">Data yang Kita Berikan</h5>
+            <p class="text-xs text-green-700 mt-1">Nama, foto, lokasi, postingan, komentar, likes</p>
+          </div>
+          <div class="bg-orange-50 border border-orange-200 rounded-lg p-4">
+            <h5 class="font-semibold text-orange-800 text-sm">Data yang Dikumpulkan Platform</h5>
+            <p class="text-xs text-orange-700 mt-1">Waktu online, kebiasaan scroll, lokasi GPS, kontak</p>
+          </div>
+          <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+            <h5 class="font-semibold text-purple-800 text-sm">Data dari Analisis</h5>
+            <p class="text-xs text-purple-700 mt-1">Minat, preferensi iklan, profil perilaku</p>
+          </div>
+          <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+            <h5 class="font-semibold text-red-800 text-sm">Data Metadata</h5>
+            <p class="text-xs text-red-700 mt-1">Waktu kirim pesan, durasi panggilan, perangkat</p>
+          </div>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-800">C. Dampak Positif dan Negatif</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <div class="bg-emerald-50 rounded-xl p-4 border border-emerald-200">
+            <h5 class="font-bold text-emerald-800 mb-2">✅ Dampak Positif</h5>
+            <ul class="text-sm text-emerald-700 space-y-1">
+              <li>• Akses informasi cepat</li>
+              <li>• Sarana belajar dan berkreasi</li>
+              <li>• Menjalin komunikasi</li>
+              <li>• Wadah ekspresi diri</li>
+            </ul>
+          </div>
+          <div class="bg-red-50 rounded-xl p-4 border border-red-200">
+            <h5 class="font-bold text-red-800 mb-2">❌ Dampak Negatif</h5>
+            <ul class="text-sm text-red-700 space-y-1">
+              <li>• Kecanduan gadget</li>
+              <li>• Cyberbullying</li>
+              <li>• Penyebaran hoaks</li>
+              <li>• Pencurian data pribadi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 bg-slate-50 rounded-xl p-5 border border-slate-200">
+        <h4 class="font-bold text-slate-800 mb-3">🎯 Latihan Singkat</h4>
+        <p class="text-sm text-slate-600 mb-3">Sebutkan 3 data pribadi yang pernah kamu bagikan di media sosial dan jelaskan risikonya!</p>
+        <textarea class="w-full border border-slate-300 rounded-lg p-3 text-sm resize-none h-24 focus:ring-2 focus:ring-blue-300 focus:border-blue-400" placeholder="Tuliskan jawabanmu di sini..."></textarea>
+      </div>
+    `
+  },
+  {
+    id: 'unit2', title: 'Keterbukaan Informasi', icon: '🌐',
+    content: `
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">Unit 2: Keterbukaan Informasi</h2>
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
+        <p class="text-sm text-blue-800"><strong>Tujuan Pembelajaran:</strong> Peserta didik mampu memahami konsep keterbukaan informasi dan dampaknya bagi kehidupan digital.</p>
+      </div>
+      <div class="space-y-4 text-slate-700 leading-relaxed">
+        <h3 class="text-lg font-semibold text-slate-800">A. Apa itu Keterbukaan Informasi?</h3>
+        <p>Keterbukaan informasi adalah prinsip bahwa informasi yang bersifat publik harus dapat diakses oleh siapa saja. Di era digital, informasi tersebar dengan sangat cepat dan luas.</p>
+        
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 my-4">
+          <h4 class="font-semibold text-amber-800 mb-2">⚠️ Tantangan Keterbukaan Informasi</h4>
+          <ul class="text-sm text-amber-700 space-y-2">
+            <li>• <strong>Overload informasi:</strong> Terlalu banyak informasi sulit dipilah</li>
+            <li>• <strong>Hoaks:</strong> Informasi palsu tersebar luas</li>
+            <li>• <strong>Manipulasi:</strong> Informasi diputar-balikkan untuk kepentingan tertentu</li>
+            <li>• <strong>Privasi:</strong> Batas antara informasi publik dan privat menjadi kabur</li>
+          </ul>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-800">B. Literasi Informasi</h3>
+        <p>Literasi informasi adalah kemampuan untuk menemukan, mengevaluasi, dan menggunakan informasi secara efektif dan etis.</p>
+        
+        <div class="bg-white border border-slate-200 rounded-xl p-5 my-4">
+          <h4 class="font-semibold text-slate-800 mb-3">🔍 Langkah Mengevaluasi Informasi</h4>
+          <div class="space-y-3">
+            <div class="flex items-start gap-3"><span class="w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center flex-shrink-0">1</span><p class="text-sm">Periksa sumber informasi - siapa yang mempublikasikan?</p></div>
+            <div class="flex items-start gap-3"><span class="w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center flex-shrink-0">2</span><p class="text-sm">Cek tanggal publikasi - apakah masih relevan?</p></div>
+            <div class="flex items-start gap-3"><span class="w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center flex-shrink-0">3</span><p class="text-sm">Bandingkan dengan sumber lain - apakah konsisten?</p></div>
+            <div class="flex items-start gap-3"><span class="w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center flex-shrink-0">4</span><p class="text-sm">Perhatikan tujuan - informatif atau provokatif?</p></div>
+            <div class="flex items-start gap-3"><span class="w-7 h-7 rounded-full bg-blue-100 text-blue-700 text-xs font-bold flex items-center justify-center flex-shrink-0">5</span><p class="text-sm">Gunakan logika - apakah masuk akal?</p></div>
+          </div>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-800">C. Hak dan Kewajiban dalam Informasi Digital</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
+            <h5 class="font-bold text-blue-800 mb-2">📋 Hak Kita</h5>
+            <ul class="text-sm text-blue-700 space-y-1">
+              <li>• Mengakses informasi publik</li>
+              <li>• Menyebarkan informasi benar</li>
+              <li>• Melindungi data pribadi</li>
+              <li>• Mendapat informasi akurat</li>
+            </ul>
+          </div>
+          <div class="bg-indigo-50 rounded-xl p-4 border border-indigo-200">
+            <h5 class="font-bold text-indigo-800 mb-2">📝 Kewajiban Kita</h5>
+            <ul class="text-sm text-indigo-700 space-y-1">
+              <li>• Memverifikasi sebelum share</li>
+              <li>• Menghormati privasi orang lain</li>
+              <li>• Tidak menyebarkan hoaks</li>
+              <li>• Bijak dalam berbagi informasi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 bg-slate-50 rounded-xl p-5 border border-slate-200">
+        <h4 class="font-bold text-slate-800 mb-3">🎯 Latihan Singkat</h4>
+        <p class="text-sm text-slate-600 mb-3">Temukan satu berita di media sosial, lalu evaluasi menggunakan 5 langkah di atas. Tuliskan hasilnya!</p>
+        <textarea class="w-full border border-slate-300 rounded-lg p-3 text-sm resize-none h-24 focus:ring-2 focus:ring-blue-300 focus:border-blue-400" placeholder="Tuliskan jawabanmu di sini..."></textarea>
+      </div>
+    `
+  },
+  {
+    id: 'unit3', title: 'Informasi Publik dan Privat', icon: '🔒',
+    content: `
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">Unit 3: Informasi Publik dan Privat</h2>
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
+        <p class="text-sm text-blue-800"><strong>Tujuan Pembelajaran:</strong> Peserta didik mampu memilih informasi yang bersifat publik atau privat.</p>
+      </div>
+      <div class="space-y-4 text-slate-700 leading-relaxed">
+        <h3 class="text-lg font-semibold text-slate-800">A. Perbedaan Informasi Publik dan Privat</h3>
+        
+        <div class="overflow-x-auto my-4">
+          <table class="w-full text-sm border border-slate-200 rounded-lg overflow-hidden">
+            <thead class="bg-slate-100">
+              <tr><th class="px-4 py-3 text-left font-semibold">Aspek</th><th class="px-4 py-3 text-left font-semibold text-green-700">Publik</th><th class="px-4 py-3 text-left font-semibold text-red-700">Privat</th></tr>
+            </thead>
+            <tbody>
+              <tr class="border-t"><td class="px-4 py-2">Akses</td><td class="px-4 py-2">Terbuka untuk umum</td><td class="px-4 py-2">Terbatas/rahasia</td></tr>
+              <tr class="border-t bg-slate-50"><td class="px-4 py-2">Contoh</td><td class="px-4 py-2">Nama, sekolah, hobby</td><td class="px-4 py-2">Password, alamat rumah, no. HP</td></tr>
+              <tr class="border-t"><td class="px-4 py-2">Risiko jika bocor</td><td class="px-4 py-2">Rendah</td><td class="px-4 py-2">Tinggi (penipuan, stalking)</td></tr>
+              <tr class="border-t bg-slate-50"><td class="px-4 py-2">Boleh di-share</td><td class="px-4 py-2">Ya, bebas</td><td class="px-4 py-2">Tidak tanpa izin</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-800">B. Kategori Data Pribadi</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 my-4">
+          <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+            <h5 class="font-bold text-red-800 text-sm mb-2">🔴 Sangat Rahasia</h5>
+            <ul class="text-xs text-red-700 space-y-1">
+              <li>• Password & PIN</li>
+              <li>• Kode OTP</li>
+              <li>• Data keuangan ortu</li>
+              <li>• NIK/KK</li>
+            </ul>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-4">
+            <h5 class="font-bold text-amber-800 text-sm mb-2">🟡 Hati-hati</h5>
+            <ul class="text-xs text-amber-700 space-y-1">
+              <li>• Alamat rumah</li>
+              <li>• Nomor HP</li>
+              <li>• Lokasi real-time</li>
+              <li>• Foto keluarga</li>
+            </ul>
+          </div>
+          <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+            <h5 class="font-bold text-green-800 text-sm mb-2">🟢 Boleh Dibagikan</h5>
+            <ul class="text-xs text-green-700 space-y-1">
+              <li>• Nama panggilan</li>
+              <li>• Hobi & minat</li>
+              <li>• Karya/prestasi</li>
+              <li>• Pendapat umum</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-800">C. Tips Menjaga Privasi Digital</h3>
+        <div class="bg-white border border-slate-200 rounded-xl p-5 my-4">
+          <ol class="space-y-2 text-sm">
+            <li><strong>1.</strong> Gunakan pengaturan privasi di semua akun sosmed</li>
+            <li><strong>2.</strong> Jangan post lokasi real-time</li>
+            <li><strong>3.</strong> Gunakan password berbeda untuk setiap akun</li>
+            <li><strong>4.</strong> Aktifkan autentikasi 2 faktor (2FA)</li>
+            <li><strong>5.</strong> Jangan simpan password di browser publik</li>
+            <li><strong>6.</strong> Review izin aplikasi secara berkala</li>
+          </ol>
+        </div>
+      </div>
+      <div class="mt-8 bg-slate-50 rounded-xl p-5 border border-slate-200">
+        <h4 class="font-bold text-slate-800 mb-3">🎯 Latihan Singkat</h4>
+        <p class="text-sm text-slate-600 mb-3">Buka profil media sosialmu. Identifikasi informasi mana yang seharusnya privat tapi ternyata publik!</p>
+        <textarea class="w-full border border-slate-300 rounded-lg p-3 text-sm resize-none h-24 focus:ring-2 focus:ring-blue-300 focus:border-blue-400" placeholder="Tuliskan jawabanmu di sini..."></textarea>
+      </div>
+    `
+  },
+  {
+    id: 'unit4', title: 'Etika Digital', icon: '⚖️',
+    content: `
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">Unit 4: Etika Digital</h2>
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
+        <p class="text-sm text-blue-800"><strong>Tujuan Pembelajaran:</strong> Peserta didik mampu menerapkan etika dalam berinteraksi di ruang digital.</p>
+      </div>
+      <div class="space-y-4 text-slate-700 leading-relaxed">
+        <h3 class="text-lg font-semibold text-slate-800">A. Pengertian Etika Digital</h3>
+        <p>Etika digital adalah seperangkat norma dan prinsip yang mengatur perilaku manusia dalam berinteraksi di dunia digital, mencakup cara berkomunikasi, berbagi informasi, dan menghormati hak orang lain secara daring.</p>
+
+        <h3 class="text-lg font-semibold text-slate-800">B. Pilar Etika Digital</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+          <div class="bg-blue-50 rounded-xl p-4 border border-blue-200">
+            <h5 class="font-bold text-blue-800 mb-1">1. Digital Ethics</h5>
+            <p class="text-xs text-blue-700">Kemampuan menyadari, mencontohkan, dan menyesuaikan norma dan nilai dalam berinteraksi digital</p>
+          </div>
+          <div class="bg-purple-50 rounded-xl p-4 border border-purple-200">
+            <h5 class="font-bold text-purple-800 mb-1">2. Digital Culture</h5>
+            <p class="text-xs text-purple-700">Kemampuan berkomunikasi dan berinteraksi secara etis di ruang digital sebagai warga negara Indonesia</p>
+          </div>
+          <div class="bg-teal-50 rounded-xl p-4 border border-teal-200">
+            <h5 class="font-bold text-teal-800 mb-1">3. Digital Safety</h5>
+            <p class="text-xs text-teal-700">Kemampuan mengenali dan menghindari risiko di lingkungan digital</p>
+          </div>
+          <div class="bg-rose-50 rounded-xl p-4 border border-rose-200">
+            <h5 class="font-bold text-rose-800 mb-1">4. Digital Skills</h5>
+            <p class="text-xs text-rose-700">Kemampuan menggunakan perangkat digital secara bijak dan bertanggung jawab</p>
+          </div>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-800">C. Pelanggaran Etika Digital</h3>
+        <div class="bg-red-50 border border-red-200 rounded-xl p-5 my-4">
+          <ul class="space-y-2 text-sm text-red-800">
+            <li>❌ <strong>Cyberbullying:</strong> Mengintimidasi/menghina orang lain secara online</li>
+            <li>❌ <strong>Plagiarisme:</strong> Mengambil karya orang lain tanpa izin/kredit</li>
+            <li>❌ <strong>Doxing:</strong> Menyebarkan data pribadi orang lain tanpa izin</li>
+            <li>❌ <strong>Hate Speech:</strong> Ujaran kebencian terhadap kelompok tertentu</li>
+            <li>❌ <strong>Hoax Spreading:</strong> Menyebarkan berita bohong</li>
+            <li>❌ <strong>Catfishing:</strong> Menggunakan identitas palsu</li>
+          </ul>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-800">D. Pedoman Berperilaku Etis</h3>
+        <div class="bg-green-50 border border-green-200 rounded-xl p-5 my-4">
+          <p class="font-semibold text-green-800 mb-2">Sebelum posting, tanya pada diri sendiri:</p>
+          <ul class="space-y-2 text-sm text-green-700">
+            <li>✅ Apakah ini BENAR? (Sudah diverifikasi faktanya?)</li>
+            <li>✅ Apakah ini BAIK? (Membawa manfaat, bukan mudarat?)</li>
+            <li>✅ Apakah ini PERLU? (Apakah orang lain perlu tahu?)</li>
+            <li>✅ Apakah ini AMAN? (Tidak membahayakan siapa pun?)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-8 bg-slate-50 rounded-xl p-5 border border-slate-200">
+        <h4 class="font-bold text-slate-800 mb-3">🎯 Latihan Singkat</h4>
+        <p class="text-sm text-slate-600 mb-3">Temukan satu contoh pelanggaran etika digital yang pernah kamu lihat di media sosial. Analisis mengapa itu tidak etis dan apa dampaknya!</p>
+        <textarea class="w-full border border-slate-300 rounded-lg p-3 text-sm resize-none h-24 focus:ring-2 focus:ring-blue-300 focus:border-blue-400" placeholder="Tuliskan jawabanmu di sini..."></textarea>
+      </div>
+    `
+  },
+  {
+    id: 'unit5', title: 'Keamanan Diri di Dunia Digital', icon: '🛡️',
+    content: `
+      <h2 class="text-2xl font-bold text-slate-800 mb-4">Unit 5: Keamanan Diri di Dunia Digital</h2>
+      <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6">
+        <p class="text-sm text-blue-800"><strong>Tujuan Pembelajaran:</strong> Peserta didik mampu menjaga keamanan dirinya dalam masyarakat digital.</p>
+      </div>
+      <div class="space-y-4 text-slate-700 leading-relaxed">
+        <h3 class="text-lg font-semibold text-slate-800">A. Ancaman Keamanan Digital</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 my-4">
+          <div class="bg-white border border-slate-200 rounded-lg p-4">
+            <h5 class="font-bold text-slate-800 text-sm">🎣 Phishing</h5>
+            <p class="text-xs text-slate-600 mt-1">Upaya menipu agar memberikan data pribadi melalui link palsu</p>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-lg p-4">
+            <h5 class="font-bold text-slate-800 text-sm">🦠 Malware</h5>
+            <p class="text-xs text-slate-600 mt-1">Program jahat yang menginfeksi perangkat untuk mencuri data</p>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-lg p-4">
+            <h5 class="font-bold text-slate-800 text-sm">🎭 Social Engineering</h5>
+            <p class="text-xs text-slate-600 mt-1">Manipulasi psikologis agar korban memberikan akses/informasi</p>
+          </div>
+          <div class="bg-white border border-slate-200 rounded-lg p-4">
+            <h5 class="font-bold text-slate-800 text-sm">👁️ Cyberstalking</h5>
+            <p class="text-xs text-slate-600 mt-1">Penguntitan digital yang membahayakan keamanan korban</p>
+          </div>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-800">B. Jejak Digital</h3>
+        <p>Setiap aktivitas online meninggalkan jejak yang sulit dihapus. Jejak digital dapat memengaruhi reputasi di masa depan.</p>
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 my-4">
+          <h5 class="font-semibold text-amber-800 mb-2">🐾 Jenis Jejak Digital</h5>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div><p class="text-sm font-medium text-amber-800">Aktif (Sengaja)</p><p class="text-xs text-amber-700">Postingan, komentar, foto, video, status</p></div>
+            <div><p class="text-sm font-medium text-amber-800">Pasif (Tidak Sengaja)</p><p class="text-xs text-amber-700">Cookies, riwayat browsing, lokasi, IP address</p></div>
+          </div>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-800">C. Strategi Perlindungan Diri</h3>
+        <div class="bg-green-50 border border-green-200 rounded-xl p-5 my-4">
+          <ol class="space-y-2 text-sm text-green-800">
+            <li><strong>1.</strong> Gunakan password kuat (min. 12 karakter, kombinasi huruf-angka-simbol)</li>
+            <li><strong>2.</strong> Aktifkan 2FA di semua akun penting</li>
+            <li><strong>3.</strong> Jangan klik link mencurigakan</li>
+            <li><strong>4.</strong> Update software dan antivirus secara berkala</li>
+            <li><strong>5.</strong> Jangan share OTP kepada siapa pun</li>
+            <li><strong>6.</strong> Laporkan jika mengalami ancaman digital</li>
+            <li><strong>7.</strong> Batasi informasi pribadi di profil publik</li>
+          </ol>
+        </div>
+
+        <h3 class="text-lg font-semibold text-slate-800">D. Langkah jika Menjadi Korban</h3>
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
+          <ol class="text-sm text-blue-800 space-y-1">
+            <li>1. Screenshot bukti</li>
+            <li>2. Blokir pelaku</li>
+            <li>3. Laporkan ke platform</li>
+            <li>4. Cerita ke orang tua/guru</li>
+            <li>5. Hubungi hotline: 119 ext 8 (KPAI)</li>
+          </ol>
+        </div>
+      </div>
+      <div class="mt-8 bg-slate-50 rounded-xl p-5 border border-slate-200">
+        <h4 class="font-bold text-slate-800 mb-3">🎯 Latihan Singkat</h4>
+        <p class="text-sm text-slate-600 mb-3">Cek pengaturan privasi salah satu akun media sosialmu. Tuliskan 3 perubahan yang perlu kamu lakukan untuk meningkatkan keamanan!</p>
+        <textarea class="w-full border border-slate-300 rounded-lg p-3 text-sm resize-none h-24 focus:ring-2 focus:ring-blue-300 focus:border-blue-400" placeholder="Tuliskan jawabanmu di sini..."></textarea>
+      </div>
+    `
+  }
+];
+
+const cases = [
+  { id: 'c1', title: 'Cyberbullying di Grup Kelas', emoji: '😢', color: 'red', desc: 'Rina (14 tahun) mendapat ejekan berulang di grup WhatsApp kelas karena salah menjawab soal di kelas. Teman-temannya membuat meme wajahnya dengan tulisan "Ratu Salah Jawab" dan menyebarkannya ke grup angkatan. Rina menjadi tidak mau sekolah selama 3 hari.' },
+  { id: 'c2', title: 'Hoaks Bencana Alam', emoji: '🌊', color: 'orange', desc: 'Sebuah pesan berantai di WhatsApp menyebarkan informasi akan terjadi gempa besar 8 SR di kota tempat tinggal siswa besok malam. Pesan tersebut mengatasnamakan BMKG. Banyak warga panik dan mengungsi. Ternyata informasi tersebut palsu dan BMKG tidak pernah mengeluarkan peringatan tersebut.' },
+  { id: 'c3', title: 'Akun Palsu Mengatasnamakan Teman', emoji: '🎭', color: 'purple', desc: 'Seseorang membuat akun Instagram palsu menggunakan foto dan nama Dani, siswa kelas VIII. Akun palsu tersebut mengirim DM tidak pantas ke banyak orang. Dani tidak tahu sampai guru BK memanggilnya karena ada laporan dari orangtua siswa lain.' },
+  { id: 'c4', title: 'Penipuan Kode OTP', emoji: '🔑', color: 'yellow', desc: 'Budi menerima SMS berisi kode OTP yang tidak ia minta. Kemudian seseorang menghubunginya via telepon mengaku sebagai "customer service" bank dan meminta kode tersebut dengan alasan verifikasi keamanan. Budi memberikan kode tersebut karena takut akunnya diblokir.' },
+  { id: 'c5', title: 'Data Pribadi Tersebar di Internet', emoji: '📋', color: 'blue', desc: 'Siti mengisi form online yang menjanjikan hadiah smartphone gratis. Form tersebut meminta nama lengkap, alamat rumah, nomor HP, nama sekolah, dan foto KTP orang tua. Sebulan kemudian, keluarganya menerima banyak telepon penipuan dan spam.' },
+  { id: 'c6', title: 'Foto Diunggah Tanpa Izin', emoji: '📸', color: 'pink', desc: 'Andi memfoto temannya Ani saat tertidur di kelas, lalu mengunggahnya ke Instagram Stories dengan caption mengejek. Foto tersebut di-screenshot dan disebarkan. Ani merasa malu dan marah karena fotonya disebarkan tanpa izin.' },
+  { id: 'c7', title: 'Komentar Negatif di Konten Teman', emoji: '💬', color: 'indigo', desc: 'Maya mengunggah video tarian di TikTok untuk tugas seni. Beberapa akun anonymous memberikan komentar kasar: "Jelek banget", "Mending hapus aja", "Gak berbakat". Maya menjadi insecure dan menghapus semua kontennya.' },
+  { id: 'c8', title: 'Video Deepfake Guru', emoji: '🤖', color: 'teal', desc: 'Sekelompok siswa menggunakan aplikasi AI untuk membuat video deepfake guru mereka sedang mengatakan hal-hal lucu/tidak pantas. Video tersebut viral di kalangan siswa dan membuat guru tersebut sangat terganggu dan mempertimbangkan laporan polisi.' },
+  { id: 'c9', title: 'Penipuan Online Shop di Instagram', emoji: '🛒', color: 'emerald', desc: 'Raka membeli sepatu branded murah dari online shop di Instagram. Setelah transfer Rp 500.000, penjual memblokir akunnya. Ternyata akun tersebut memiliki banyak korban lain dan menggunakan foto produk curian dari akun lain.' },
+  { id: 'c10', title: 'Jejak Digital yang Menghantui', emoji: '👻', color: 'slate', desc: 'Tiga tahun lalu, Fira (saat kelas 5 SD) sering posting keluhan tentang gurunya di Facebook. Sekarang saat mendaftar OSIS, screenshoot postingan lamanya ditemukan dan disebarkan. Fira merasa malu karena sekarang ia sudah berubah tapi jejak digitalnya tidak bisa dihapus.' }
+];
+
+const quizQuestions = [
+  { q: "Perhatikan situasi berikut: Andi menerima pesan dari akun tak dikenal yang meminta kode OTP dengan alasan verifikasi hadiah. Tindakan paling tepat yang harus dilakukan Andi adalah...", options: ["Memberikan kode karena takut hadiah hangus", "Mengabaikan pesan dan memblokir pengirim", "Membalas pesan untuk bertanya lebih lanjut", "Menelepon nomor yang tertera di pesan"], correct: 1, level: "C4", explanation: "Kode OTP bersifat rahasia dan tidak boleh dibagikan kepada siapa pun. Pesan yang meminta OTP dengan iming-iming hadiah adalah modus penipuan. Tindakan tepat adalah mengabaikan dan memblokir." },
+  { q: "Mengapa jejak digital disebut bersifat permanen?", options: ["Karena tidak bisa dilihat orang lain", "Karena tersimpan di perangkat lokal saja", "Karena sulit dihapus sepenuhnya dari internet meski sudah di-delete", "Karena hanya admin yang bisa mengaksesnya"], correct: 2, level: "C2", explanation: "Jejak digital bersifat permanen karena meski kita menghapus konten, salinannya mungkin sudah tersebar, di-screenshot, atau tersimpan di server/cache." },
+  { q: "Seorang siswa menerima pesan berisi berita gempa dari sumber tidak jelas. Langkah verifikasi yang paling tepat adalah...", options: ["Langsung menyebarkan ke grup keluarga agar waspada", "Mengecek website resmi BMKG dan membandingkan dengan media kredibel", "Membalas pesan dan bertanya siapa sumbernya", "Menunggu sampai ada yang mengonfirmasi di media sosial"], correct: 1, level: "C4", explanation: "Verifikasi informasi harus dilakukan melalui sumber resmi dan kredibel (BMKG untuk info bencana). Jangan sebarkan sebelum terverifikasi." },
+  { q: "Yang termasuk data pribadi bersifat SANGAT RAHASIA adalah...", options: ["Nama lengkap dan sekolah", "Hobi dan film favorit", "Password, PIN, dan kode OTP", "Akun media sosial publik"], correct: 2, level: "C2", explanation: "Password, PIN, dan kode OTP adalah data yang jika bocor dapat langsung disalahgunakan untuk mengakses akun atau melakukan transaksi tanpa izin." },
+  { q: "Analisis mengapa cyberbullying lebih berbahaya daripada bullying konvensional!", options: ["Karena terjadi secara langsung", "Karena bisa terjadi 24/7, menyebar luas tanpa batas, dan jejak sulit dihapus", "Karena hanya terjadi di sekolah", "Karena pelaku selalu diketahui identitasnya"], correct: 1, level: "C4", explanation: "Cyberbullying berbahaya karena: (1) terjadi kapan saja 24/7, (2) audiens sangat luas, (3) jejak digital sulit dihapus, (4) pelaku bisa anonim sehingga sulit ditindak." },
+  { q: "Berikut ini yang merupakan ciri-ciri informasi hoaks adalah...", options: ["Mencantumkan sumber resmi dan tanggal publikasi", "Menggunakan judul provokatif, tidak ada sumber jelas, dan mendorong share cepat", "Ditulis dengan bahasa formal dan ilmiah", "Diterbitkan oleh media yang memiliki redaksi"], correct: 1, level: "C3", explanation: "Hoaks biasanya memiliki ciri: judul sensasional/provokatif, tidak mencantumkan sumber valid, mendorong pembaca segera menyebarkan, dan sering menggunakan kata 'URGENT' atau 'SEBARKAN'." },
+  { q: "Rina melihat temannya di-bully di grup WhatsApp. Evaluasi tindakan terbaik yang seharusnya Rina lakukan!", options: ["Diam saja karena bukan urusannya", "Ikut mengomentari agar tidak dikucilkan", "Membela korban, mengajak bicara, dan melaporkan ke guru", "Keluar dari grup tanpa melakukan apa-apa"], correct: 2, level: "C5", explanation: "Sebagai bystander, tindakan terbaik adalah: (1) membela korban/menunjukkan ketidaksetujuan, (2) mengajak korban bicara secara privat, (3) melaporkan ke orang dewasa yang dipercaya." },
+  { q: "Apa perbedaan utama antara informasi publik dan privat?", options: ["Informasi publik selalu benar, privat selalu salah", "Informasi publik boleh diakses siapa saja, privat terbatas aksesnya", "Tidak ada perbedaan di era digital", "Informasi privat lebih penting daripada publik"], correct: 1, level: "C2", explanation: "Informasi publik bersifat terbuka dan boleh diakses umum (misal: nama, sekolah). Informasi privat bersifat terbatas dan hanya boleh diakses pihak tertentu (misal: password, alamat rumah)." },
+  { q: "Seorang teman meminta foto KTP orang tuamu untuk 'mendaftar lomba online'. Sintesiskan tindakan yang tepat!", options: ["Langsung kirim karena percaya pada teman", "Menolak dan menjelaskan bahwa KTP adalah dokumen rahasia yang tidak boleh dibagikan sembarangan", "Kirim foto KTP tapi tutup sebagian datanya", "Minta teman menjelaskan dulu lombanya apa"], correct: 1, level: "C5", explanation: "KTP berisi data sensitif (NIK, alamat, TTL). Tidak ada lomba resmi yang meminta foto KTP peserta/ortu via chat pribadi. Ini bisa menjadi modus pencurian identitas." },
+  { q: "Penerapan filter THINK sebelum posting di media sosial bertujuan untuk...", options: ["Memperlambat proses posting", "Memastikan konten yang di-share adalah True, Helpful, Inspiring, Necessary, dan Kind", "Meningkatkan jumlah likes", "Menghindari komentar negatif"], correct: 1, level: "C3", explanation: "Filter THINK membantu kita memastikan bahwa setiap konten yang kita posting bersifat: True (benar), Helpful (bermanfaat), Inspiring (menginspirasi), Necessary (perlu), Kind (baik)." },
+  { q: "Bandingkan risiko antara membagikan lokasi real-time vs lokasi setelah meninggalkan tempat!", options: ["Keduanya sama berbahayanya", "Lokasi real-time lebih berisiko karena orang jahat bisa tahu posisi kita saat itu juga", "Lokasi setelah pergi lebih berbahaya", "Tidak ada risiko membagikan lokasi"], correct: 1, level: "C4", explanation: "Membagikan lokasi real-time sangat berisiko karena orang dengan niat jahat bisa langsung mengetahui posisi kita dan melakukan tindakan kriminal. Membagikan lokasi setelah pergi relatif lebih aman." },
+  { q: "Apa yang dimaksud dengan social engineering dalam konteks keamanan digital?", options: ["Teknik membangun jaringan sosial yang baik", "Teknik manipulasi psikologis untuk memperoleh informasi rahasia dari korban", "Teknik membuat website palsu", "Teknik meretas password dengan software"], correct: 1, level: "C2", explanation: "Social engineering adalah teknik manipulasi psikologis di mana pelaku memanfaatkan kepercayaan, ketakutan, atau ketidaktahuan korban untuk mendapatkan akses ke informasi atau sistem rahasia." },
+  { q: "Evaluasi mengapa '123456' dianggap sebagai password yang buruk!", options: ["Karena terlalu pendek saja", "Karena mudah ditebak, berupa urutan sederhana, dan termasuk password paling umum digunakan", "Karena mengandung angka", "Karena tidak mengandung spasi"], correct: 1, level: "C5", explanation: "'123456' buruk karena: (1) urutan sederhana yang mudah ditebak, (2) termasuk top 5 password paling umum, (3) bisa diretas dalam hitungan detik, (4) tidak memenuhi kriteria password kuat." },
+  { q: "Contoh penerapan etika digital yang tepat saat berkomentar di media sosial adalah...", options: ["Bebas berkomentar apapun karena ada kebebasan berpendapat", "Memberikan kritik konstruktif dengan bahasa sopan dan tidak menyerang pribadi", "Menggunakan akun anonim agar bebas berpendapat", "Membalas komentar kasar dengan komentar yang lebih kasar"], correct: 1, level: "C3", explanation: "Etika digital mengharuskan kita berkomentar dengan sopan, konstruktif, dan tidak menyerang pribadi. Kebebasan berpendapat tidak berarti bebas menyakiti." },
+  { q: "Ciptakan strategi agar jejak digital yang positif dapat bermanfaat di masa depan!", options: ["Tidak perlu peduli jejak digital karena tidak penting", "Membangun portofolio online positif, aktif berkontribusi di komunitas edukasi, dan menjaga kualitas postingan", "Menghapus semua akun media sosial", "Membuat akun baru setiap bulan"], correct: 1, level: "C5", explanation: "Jejak digital positif bisa menjadi portofolio di masa depan. Strateginya: posting karya/prestasi, kontribusi positif di komunitas, jaga kualitas konten, dan bangun personal branding yang baik." },
+  { q: "Apa yang harus dilakukan jika menemukan akun palsu yang menggunakan foto kita?", options: ["Biarkan saja, nanti juga hilang sendiri", "Screenshot bukti, laporkan ke platform, beritahu teman/keluarga, dan jika serius laporkan ke polisi", "Buat akun palsu balik untuk membalas", "Pindah ke platform lain"], correct: 1, level: "C3", explanation: "Langkah yang benar: (1) screenshot bukti, (2) laporkan ke platform (report impersonation), (3) beritahu lingkungan agar tidak tertipu, (4) jika ada ancaman/kerugian, laporkan ke polisi." },
+  { q: "Mengapa penting untuk membaca terms & conditions sebelum menggunakan aplikasi?", options: ["Tidak penting, tinggal klik setuju saja", "Untuk mengetahui data apa yang dikumpulkan aplikasi dan bagaimana data kita digunakan", "Karena ada hadiah tersembunyi di dalamnya", "Hanya formalitas yang tidak berpengaruh"], correct: 1, level: "C4", explanation: "Terms & conditions menjelaskan: data apa yang dikumpulkan, bagaimana data digunakan, dengan siapa data dibagikan, dan hak-hak kita sebagai pengguna. Penting untuk melindungi privasi." },
+  { q: "Sintesiskan hubungan antara keterbukaan informasi dengan tanggung jawab digital!", options: ["Tidak ada hubungannya", "Semakin terbuka informasi, semakin besar tanggung jawab kita untuk memverifikasi, menyaring, dan tidak menyebarkan informasi yang merugikan", "Keterbukaan informasi berarti boleh share semua", "Tanggung jawab digital hanya urusan pemerintah"], correct: 1, level: "C5", explanation: "Keterbukaan informasi dan tanggung jawab digital saling berkaitan: kemudahan akses informasi harus diimbangi kemampuan memilah, memverifikasi, dan bertanggung jawab atas apa yang kita sebarkan." },
+  { q: "Sebuah website meminta informasi berikut: nama, email, nomor HP, dan foto selfie dengan KTP. Website tersebut kemungkinan besar...", options: ["Aman karena banyak yang mengaksesnya", "Berpotensi penipuan/pencurian identitas karena meminta data berlebihan", "Website resmi pemerintah", "Hanya ingin memverifikasi umur"], correct: 1, level: "C4", explanation: "Website yang meminta foto selfie + KTP berpotensi penipuan identitas. Data ini bisa digunakan untuk membuka rekening palsu, pinjaman online ilegal, atau kejahatan lain mengatasnamakan korban." },
+  { q: "Evaluasi mengapa autentikasi dua faktor (2FA) penting untuk keamanan akun!", options: ["Hanya memperumit proses login", "Menambahkan lapisan keamanan ekstra sehingga meski password bocor, akun tetap aman karena butuh verifikasi tambahan", "Membuat loading lebih lama", "Hanya untuk akun yang mahal saja"], correct: 1, level: "C4", explanation: "2FA penting karena menambah lapisan keamanan. Meski password diretas, pencuri tetap tidak bisa masuk tanpa kode verifikasi tambahan yang dikirim ke perangkat pemilik asli." }
+];
+
+// ===== NAVIGATION =====
+function navigate(page) {
+  currentPage = page;
+  renderPage();
+  updateNavActive();
+  document.getElementById('content').scrollTop = 0;
+}
+
+function toggleMobile() {
+  document.getElementById('mobile-nav').classList.toggle('hidden');
+}
+
+function updateNavActive() {
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.classList.remove('bg-blue-50', 'text-blue-700', 'font-semibold');
+    if (btn.dataset.nav === currentPage) {
+      btn.classList.add('bg-blue-50', 'text-blue-700', 'font-semibold');
+    }
+  });
+}
+
+// ===== PAGE RENDERING =====
+function renderPage() {
+  const content = document.getElementById('content');
+  content.innerHTML = '<div class="fade-in">' + getPageContent() + '</div>';
+  lucide.createIcons();
+}
+
+function getPageContent() {
+  switch(currentPage) {
+    case 'beranda': return renderBeranda();
+    case 'tentang': return renderTentang();
+    case 'unit1': case 'unit2': case 'unit3': case 'unit4': case 'unit5':
+      return renderUnit(currentPage);
+    case 'kasus': return renderKasus();
+    case 'aksi': return renderAksi();
+    case 'kuis': return renderKuis();
+    case 'proyek': return renderProyek();
+    case 'dashboard': return renderDashboard();
+    default: return renderBeranda();
+  }
+}
+
+function renderBeranda() {
+  const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+  return `
+    <div class="text-center py-8 lg:py-12">
+      <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-1.5 rounded-full text-xs font-semibold mb-6">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> E-Modul Interaktif
+      </div>
+      <h1 class="text-3xl lg:text-4xl font-extrabold text-slate-900 mb-3">${config.module_title || defaultConfig.module_title}</h1>
+      <p class="text-slate-500 text-base max-w-xl mx-auto mb-2">Informatika SMP Kelas VIII • Model Pembelajaran AKSI</p>
+      <p class="text-slate-400 text-sm mb-8">${config.school_name || defaultConfig.school_name} • ${config.teacher_name || defaultConfig.teacher_name}</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-10 text-left">
+        <div class="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-5 text-white">
+          <div class="text-2xl mb-2">🔍</div>
+          <h3 class="font-bold text-sm">A - Analisis</h3>
+          <p class="text-xs opacity-80 mt-1">Analisis kasus dengan 5W+1H</p>
+        </div>
+        <div class="bg-gradient-to-br from-emerald-500 to-emerald-700 rounded-xl p-5 text-white">
+          <div class="text-2xl mb-2">📋</div>
+          <h3 class="font-bold text-sm">K - Kajian Fakta</h3>
+          <p class="text-xs opacity-80 mt-1">Filter PASTI untuk validasi</p>
+        </div>
+        <div class="bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl p-5 text-white">
+          <div class="text-2xl mb-2">💡</div>
+          <h3 class="font-bold text-sm">S - Sintesis</h3>
+          <p class="text-xs opacity-80 mt-1">Filter THINK untuk keputusan</p>
+        </div>
+        <div class="bg-gradient-to-br from-amber-500 to-amber-700 rounded-xl p-5 text-white">
+          <div class="text-2xl mb-2">❤️</div>
+          <h3 class="font-bold text-sm">I - Internalisasi</h3>
+          <p class="text-xs opacity-80 mt-1">Refleksi & komitmen digital</p>
+        </div>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-xl p-6 text-left mb-8">
+        <h3 class="font-bold text-slate-800 mb-3">🎯 Tujuan Pembelajaran</h3>
+        <ol class="text-sm text-slate-600 space-y-2">
+          <li>1. Memahami ketersediaan data dan informasi di media sosial</li>
+          <li>2. Memahami konsep keterbukaan informasi digital</li>
+          <li>3. Membedakan informasi publik dan privat</li>
+          <li>4. Menerapkan etika digital dalam berinteraksi online</li>
+          <li>5. Menjaga keamanan diri di dunia digital</li>
+        </ol>
+      </div>
+
+      <button onclick="navigate('unit1')" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition shadow-lg shadow-blue-200">
+        Mulai Belajar <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </button>
+    </div>
+  `;
+}
+
+function renderTentang() {
+  return `
+    <h2 class="text-2xl font-bold text-slate-800 mb-6">Tentang Modul</h2>
+    <div class="space-y-6">
+      <div class="bg-white border border-slate-200 rounded-xl p-6">
+        <h3 class="font-bold text-slate-800 mb-2">📖 Deskripsi Modul</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">E-Modul ini dikembangkan untuk mata pelajaran Informatika SMP Kelas VIII pada elemen Dampak Sosial Informatika (DSI). Modul menggunakan Model AKSI (Analisis–Kajian Fakta–Sintesis–Internalisasi) berbasis Case-Based Learning untuk meningkatkan literasi etika digital dan kemampuan berpikir kritis siswa.</p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-6">
+        <h3 class="font-bold text-slate-800 mb-3">📋 Petunjuk Penggunaan</h3>
+        <ol class="text-sm text-slate-600 space-y-2">
+          <li><strong>1.</strong> Pelajari materi pada setiap unit secara berurutan</li>
+          <li><strong>2.</strong> Baca dan analisis kasus digital yang disediakan</li>
+          <li><strong>3.</strong> Kerjakan LKPD AKSI untuk setiap kasus yang dipilih</li>
+          <li><strong>4.</strong> Kerjakan kuis HOTS untuk mengukur pemahaman</li>
+          <li><strong>5.</strong> Buat proyek digital sebagai produk akhir</li>
+          <li><strong>6.</strong> Pantau perkembangan di menu Dashboard</li>
+        </ol>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-6">
+        <h3 class="font-bold text-slate-800 mb-2">🎓 Capaian Pembelajaran</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Pada akhir fase D, peserta didik mampu memahami ketersediaan data dan informasi lewat aplikasi media sosial, memahami keterbukaan informasi, memilih informasi yang bersifat publik atau privat, menerapkan etika, dan menjaga keamanan dirinya dalam masyarakat digital.</p>
+      </div>
+    </div>
+  `;
+}
+
+function renderUnit(unitId) {
+  const unit = units.find(u => u.id === unitId);
+  if (!unit) return '<p>Unit tidak ditemukan.</p>';
+  const idx = units.indexOf(unit);
+  const prev = idx > 0 ? units[idx-1] : null;
+  const next = idx < units.length - 1 ? units[idx+1] : null;
+  return `
+    ${unit.content}
+    <div class="flex justify-between mt-8 pt-6 border-t border-slate-200">
+      ${prev ? `<button onclick="navigate('${prev.id}')" class="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1"><i data-lucide="arrow-left" class="w-4 h-4"></i> ${prev.title}</button>` : '<div></div>'}
+      ${next ? `<button onclick="navigate('${next.id}')" class="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1">${next.title} <i data-lucide="arrow-right" class="w-4 h-4"></i></button>` : `<button onclick="navigate('kasus')" class="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1">Kasus Digital <i data-lucide="arrow-right" class="w-4 h-4"></i></button>`}
+    </div>
+  `;
+}
+
+function renderKasus() {
+  return `
+    <h2 class="text-2xl font-bold text-slate-800 mb-2">Kasus Digital</h2>
+    <p class="text-sm text-slate-500 mb-6">Pilih salah satu kasus untuk dianalisis menggunakan Model AKSI</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      ${cases.map(c => `
+        <div class="card-hover bg-white border border-slate-200 rounded-xl p-5 cursor-pointer" onclick="selectCase('${c.id}')">
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">${c.emoji}</span>
+            <div class="flex-1">
+              <h4 class="font-bold text-slate-800 text-sm">${c.title}</h4>
+              <p class="text-xs text-slate-500 mt-1 line-clamp-2">${c.desc}</p>
+            </div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function selectCase(caseId) {
+  const c = cases.find(x => x.id === caseId);
+  if (!c) return;
+  const content = document.getElementById('content');
+  content.innerHTML = `<div class="fade-in">
+    <button onclick="navigate('kasus')" class="text-sm text-blue-600 hover:text-blue-800 flex items-center gap-1 mb-4"><i data-lucide="arrow-left" class="w-4 h-4"></i> Kembali</button>
+    <div class="bg-white border border-slate-200 rounded-xl p-6 mb-6">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="text-3xl">${c.emoji}</span>
+        <h3 class="text-xl font-bold text-slate-800">${c.title}</h3>
+      </div>
+      <p class="text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-lg">${c.desc}</p>
+    </div>
+    <div class="text-center">
+      <button onclick="startAksi('${c.id}')" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-semibold transition text-sm">
+        <i data-lucide="zap" class="w-4 h-4"></i> Analisis dengan Model AKSI
+      </button>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function startAksi(caseId) {
+  currentCase = caseId;
+  navigate('aksi');
+}
+
+let currentCase = null;
+let aksiTab = 'analisis';
+
+function renderAksi() {
+  const c = currentCase ? cases.find(x => x.id === currentCase) : null;
+  return `
+    <h2 class="text-2xl font-bold text-slate-800 mb-2">LKPD Model AKSI</h2>
+    <p class="text-sm text-slate-500 mb-4">${c ? `Kasus: ${c.title}` : 'Pilih kasus terlebih dahulu dari menu Kasus Digital'}</p>
+    ${!c ? `<button onclick="navigate('kasus')" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium">Pilih Kasus</button>` : `
+    <div class="bg-slate-50 border border-slate-200 rounded-lg p-3 mb-4 text-xs text-slate-600">${c.desc}</div>
+    <div class="flex gap-1 border-b border-slate-200 mb-6 overflow-x-auto">
+      <button onclick="switchAksiTab('analisis')" class="px-4 py-2 text-sm whitespace-nowrap ${aksiTab==='analisis'?'tab-active':'text-slate-500'}">A - Analisis</button>
+      <button onclick="switchAksiTab('kajian')" class="px-4 py-2 text-sm whitespace-nowrap ${aksiTab==='kajian'?'tab-active':'text-slate-500'}">K - Kajian Fakta</button>
+      <button onclick="switchAksiTab('sintesis')" class="px-4 py-2 text-sm whitespace-nowrap ${aksiTab==='sintesis'?'tab-active':'text-slate-500'}">S - Sintesis</button>
+      <button onclick="switchAksiTab('internalisasi')" class="px-4 py-2 text-sm whitespace-nowrap ${aksiTab==='internalisasi'?'tab-active':'text-slate-500'}">I - Internalisasi</button>
+    </div>
+    <div id="aksi-content">${renderAksiTab()}</div>
+    `}
+  `;
+}
+
+function switchAksiTab(tab) {
+  aksiTab = tab;
+  document.getElementById('aksi-content').innerHTML = renderAksiTab();
+}
+
+function renderAksiTab() {
+  switch(aksiTab) {
+    case 'analisis': return `
+      <div class="bg-white border border-slate-200 rounded-xl p-6">
+        <h3 class="font-bold text-slate-800 mb-1">🔍 ANALISIS (5W+1H)</h3>
+        <p class="text-xs text-slate-500 mb-4">Analisis kasus menggunakan pertanyaan 5W+1H</p>
+        <div class="space-y-4">
+          ${['What (Apa yang terjadi?)', 'Who (Siapa yang terlibat?)', 'When (Kapan peristiwa terjadi?)', 'Where (Di mana peristiwa terjadi?)', 'Why (Mengapa hal ini terjadi?)', 'How (Bagaimana kronologinya?)'].map((label, i) => `
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">${label}</label>
+              <textarea class="w-full border border-slate-300 rounded-lg p-2.5 text-sm resize-none h-16 focus:ring-2 focus:ring-blue-300 focus:border-blue-400" placeholder="Tuliskan analisismu..." data-field="5w1h_${i}"></textarea>
+            </div>
+          `).join('')}
+        </div>
+        <button onclick="saveAksiData('analisis')" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">💾 Simpan Analisis</button>
+      </div>
+    `;
+    case 'kajian': return `
+      <div class="bg-white border border-slate-200 rounded-xl p-6">
+        <h3 class="font-bold text-slate-800 mb-1">📋 KAJIAN FAKTA (Filter PASTI)</h3>
+        <p class="text-xs text-slate-500 mb-4">Evaluasi informasi menggunakan Filter PASTI</p>
+        <div class="space-y-4">
+          ${[
+            ['P - Pembuat/Pengunggah','Siapa yang membuat/menyebarkan informasi ini? Apakah kredibel?'],
+            ['A - Akurasi','Apakah informasi ini akurat? Apakah sesuai fakta?'],
+            ['S - Sumber','Dari mana sumber informasi ini? Apakah sumber terpercaya?'],
+            ['T - Tujuan','Apa tujuan informasi ini disebarkan?'],
+            ['I - Isi','Apakah isi informasi ini logis dan tidak provokatif?']
+          ].map(([label, placeholder], i) => `
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">${label}</label>
+              <textarea class="w-full border border-slate-300 rounded-lg p-2.5 text-sm resize-none h-16 focus:ring-2 focus:ring-blue-300 focus:border-blue-400" placeholder="${placeholder}" data-field="pasti_${i}"></textarea>
+            </div>
+          `).join('')}
+        </div>
+        <div class="mt-4 bg-slate-50 rounded-lg p-4">
+          <h4 class="text-sm font-semibold text-slate-700 mb-2">Kesimpulan Validasi:</h4>
+          <div class="flex gap-3">
+            <label class="flex items-center gap-2 text-sm"><input type="radio" name="validasi" value="valid" class="text-green-600"> ✅ Informasi Valid</label>
+            <label class="flex items-center gap-2 text-sm"><input type="radio" name="validasi" value="hoax" class="text-red-600"> ❌ Hoaks/Tidak Valid</label>
+            <label class="flex items-center gap-2 text-sm"><input type="radio" name="validasi" value="partial" class="text-amber-600"> ⚠️ Perlu Verifikasi</label>
+          </div>
+        </div>
+        <button onclick="saveAksiData('kajian')" class="mt-4 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">💾 Simpan Kajian</button>
+      </div>
+    `;
+    case 'sintesis': return `
+      <div class="bg-white border border-slate-200 rounded-xl p-6">
+        <h3 class="font-bold text-slate-800 mb-1">💡 SINTESIS (Filter THINK)</h3>
+        <p class="text-xs text-slate-500 mb-4">Evaluasi tindakan dan buat keputusan etis</p>
+        <div class="space-y-4">
+          ${[
+            ['T - True (Benar)','Apakah tindakan/informasi ini benar berdasarkan fakta?'],
+            ['H - Helpful (Bermanfaat)','Apakah tindakan ini bermanfaat bagi semua pihak?'],
+            ['I - Inspiring (Menginspirasi)','Apakah tindakan ini dapat menginspirasi hal positif?'],
+            ['N - Necessary (Perlu)','Apakah tindakan ini perlu dilakukan?'],
+            ['K - Kind (Baik)','Apakah tindakan ini menunjukkan kebaikan dan empati?']
+          ].map(([label, placeholder], i) => `
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">${label}</label>
+              <textarea class="w-full border border-slate-300 rounded-lg p-2.5 text-sm resize-none h-16 focus:ring-2 focus:ring-blue-300 focus:border-blue-400" placeholder="${placeholder}" data-field="think_${i}"></textarea>
+            </div>
+          `).join('')}
+        </div>
+        <div class="mt-4 bg-slate-50 rounded-lg p-4">
+          <label class="block text-sm font-semibold text-slate-700 mb-2">Keputusan dan Solusi yang Disarankan:</label>
+          <textarea class="w-full border border-slate-300 rounded-lg p-3 text-sm resize-none h-24 focus:ring-2 focus:ring-blue-300 focus:border-blue-400" placeholder="Berdasarkan analisis THINK, tuliskan keputusan dan solusi yang kamu sarankan..." data-field="solusi"></textarea>
+        </div>
+        <button onclick="saveAksiData('sintesis')" class="mt-4 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">💾 Simpan Sintesis</button>
+      </div>
+    `;
+    case 'internalisasi': return `
+      <div class="bg-white border border-slate-200 rounded-xl p-6">
+        <h3 class="font-bold text-slate-800 mb-1">❤️ INTERNALISASI (Jurnal Refleksi)</h3>
+        <p class="text-xs text-slate-500 mb-4">Refleksikan pelajaran dari kasus ini untuk kehidupan digitalmu</p>
+        <div class="space-y-4">
+          ${[
+            ['Apa pelajaran yang saya peroleh dari kasus ini?', 'Tuliskan insight dan pelajaran utama...'],
+            ['Apa kesalahan yang harus saya hindari?', 'Tuliskan perilaku digital yang harus dihindari...'],
+            ['Apa komitmen digital saya ke depan?', 'Tuliskan janji/komitmen untuk berperilaku etis di dunia digital...'],
+            ['Bagaimana saya akan bertindak di masa depan?', 'Tuliskan rencana aksi nyata yang akan kamu lakukan...']
+          ].map(([label, placeholder], i) => `
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-1">${label}</label>
+              <textarea class="w-full border border-slate-300 rounded-lg p-2.5 text-sm resize-none h-20 focus:ring-2 focus:ring-blue-300 focus:border-blue-400" placeholder="${placeholder}" data-field="refleksi_${i}"></textarea>
+            </div>
+          `).join('')}
+        </div>
+        <button onclick="saveAksiData('internalisasi')" class="mt-4 bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">💾 Simpan Refleksi</button>
+      </div>
+    `;
+  }
+}
+
+async function saveAksiData(section) {
+  if (!currentCase) return;
+  const textareas = document.querySelectorAll(`[data-field]`);
+  let answers = {};
+  textareas.forEach(ta => { answers[ta.dataset.field] = ta.value; });
+  
+  if (appData.length >= 999) {
+    showToast('Batas penyimpanan tercapai (999 data)', 'error');
+    return;
+  }
+
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = '⏳ Menyimpan...';
+
+  const result = await window.dataSdk.create({
+    type: 'aksi_' + section,
+    unit_id: '',
+    case_id: currentCase,
+    question_key: section,
+    answer: JSON.stringify(answers),
+    score: 0,
+    completed: true,
+    created_at: new Date().toISOString()
+  });
+
+  if (result.isOk) {
+    showToast('Berhasil disimpan! ✅', 'success');
+  } else {
+    showToast('Gagal menyimpan. Coba lagi.', 'error');
+  }
+  btn.disabled = false;
+  btn.textContent = '💾 Simpan';
+}
+
+// ===== QUIZ =====
+function renderKuis() {
+  if (quizState.submitted) return renderQuizResults();
+  const q = quizQuestions[quizState.current];
+  const progress = ((quizState.current) / quizQuestions.length * 100).toFixed(0);
+  return `
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-xl font-bold text-slate-800">Kuis HOTS</h2>
+      <span class="text-xs bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full font-medium">Level ${q.level}</span>
+    </div>
+    <div class="w-full bg-slate-200 rounded-full h-2 mb-6">
+      <div class="bg-blue-600 h-2 rounded-full progress-bar" style="width:${progress}%"></div>
+    </div>
+    <p class="text-xs text-slate-500 mb-4">Soal ${quizState.current + 1} dari ${quizQuestions.length}</p>
+    <div class="bg-white border border-slate-200 rounded-xl p-6 mb-4">
+      <p class="text-sm text-slate-800 font-medium leading-relaxed">${q.q}</p>
+    </div>
+    <div class="space-y-3 mb-6">
+      ${q.options.map((opt, i) => `
+        <button onclick="selectQuizAnswer(${i})" class="quiz-option w-full text-left border border-slate-200 rounded-lg p-4 text-sm ${quizState.answers[quizState.current] === i ? 'selected' : ''}">
+          <span class="font-medium text-slate-500 mr-2">${String.fromCharCode(65+i)}.</span> ${opt}
+        </button>
+      `).join('')}
+    </div>
+    <div class="flex justify-between">
+      <button onclick="prevQuiz()" class="text-sm text-slate-500 hover:text-slate-700 ${quizState.current === 0 ? 'invisible' : ''}" ${quizState.current === 0 ? 'disabled' : ''}>← Sebelumnya</button>
+      ${quizState.current < quizQuestions.length - 1 ? 
+        `<button onclick="nextQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition" ${quizState.answers[quizState.current] === undefined ? 'disabled style="opacity:0.5"' : ''}>Selanjutnya →</button>` :
+        `<button onclick="submitQuiz()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition" ${quizState.answers[quizState.current] === undefined ? 'disabled style="opacity:0.5"' : ''}>Selesai & Lihat Skor</button>`
+      }
+    </div>
+  `;
+}
+
+function selectQuizAnswer(idx) {
+  quizState.answers[quizState.current] = idx;
+  renderPage();
+}
+
+function nextQuiz() { if (quizState.current < quizQuestions.length - 1) { quizState.current++; renderPage(); } }
+function prevQuiz() { if (quizState.current > 0) { quizState.current--; renderPage(); } }
+
+async function submitQuiz() {
+  let score = 0;
+  quizQuestions.forEach((q, i) => { if (quizState.answers[i] === q.correct) score++; });
+  quizState.score = score;
+  quizState.submitted = true;
+
+  if (appData.length < 999) {
+    await window.dataSdk.create({
+      type: 'quiz_result',
+      unit_id: '',
+      case_id: '',
+      question_key: 'quiz_hots',
+      answer: JSON.stringify(quizState.answers),
+      score: Math.round((score / quizQuestions.length) * 100),
+      completed: true,
+      created_at: new Date().toISOString()
+    });
+  }
+  renderPage();
+}
+
+function renderQuizResults() {
+  const pct = Math.round((quizState.score / quizQuestions.length) * 100);
+  const grade = pct >= 90 ? 'A' : pct >= 80 ? 'B' : pct >= 70 ? 'C' : 'D';
+  return `
+    <div class="text-center py-8">
+      <div class="text-5xl mb-4">${pct >= 70 ? '🎉' : '💪'}</div>
+      <h2 class="text-2xl font-bold text-slate-800 mb-2">Hasil Kuis HOTS</h2>
+      <div class="inline-flex items-center gap-3 bg-white border-2 ${pct >= 70 ? 'border-green-300' : 'border-amber-300'} rounded-2xl px-8 py-4 mb-4">
+        <span class="text-4xl font-extrabold ${pct >= 70 ? 'text-green-600' : 'text-amber-600'}">${pct}</span>
+        <span class="text-slate-500 text-sm text-left">poin<br><span class="font-bold text-lg text-slate-800">Grade ${grade}</span></span>
+      </div>
+      <p class="text-sm text-slate-500 mb-6">Benar: ${quizState.score}/${quizQuestions.length}</p>
+    </div>
+    <h3 class="font-bold text-slate-800 mb-4">📝 Pembahasan</h3>
+    <div class="space-y-4 mb-8">
+      ${quizQuestions.map((q, i) => {
+        const isCorrect = quizState.answers[i] === q.correct;
+        return `
+          <div class="bg-white border ${isCorrect ? 'border-green-200' : 'border-red-200'} rounded-xl p-4">
+            <div class="flex items-start gap-2 mb-2">
+              <span class="text-sm">${isCorrect ? '✅' : '❌'}</span>
+              <p class="text-sm text-slate-800 font-medium">${i+1}. ${q.q}</p>
+            </div>
+            <p class="text-xs ${isCorrect ? 'text-green-700' : 'text-red-700'} ml-6">Jawabanmu: ${String.fromCharCode(65 + (quizState.answers[i] ?? 0))} ${isCorrect ? '(Benar)' : `(Salah) • Jawaban benar: ${String.fromCharCode(65 + q.correct)}`}</p>
+            <p class="text-xs text-slate-600 ml-6 mt-1 bg-slate-50 p-2 rounded">${q.explanation}</p>
+          </div>
+        `;
+      }).join('')}
+    </div>
+    <button onclick="resetQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium">🔄 Ulangi Kuis</button>
+  `;
+}
+
+function resetQuiz() {
+  quizState = { current: 0, answers: [], submitted: false, score: 0 };
+  renderPage();
+}
+
+function renderProyek() {
+  return `
+    <h2 class="text-2xl font-bold text-slate-800 mb-2">Proyek Digital</h2>
+    <p class="text-sm text-slate-500 mb-6">Tema: "Kampanye Etika Digital"</p>
+    
+    <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-6 text-white mb-6">
+      <h3 class="font-bold text-lg mb-2">🚀 Buat Kampanye Etika Digitalmu!</h3>
+      <p class="text-sm opacity-90">Pilih satu produk digital untuk mengkampanyekan etika digital kepada teman sebayamu.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div class="bg-white border border-slate-200 rounded-xl p-5 card-hover">
+        <span class="text-2xl">🖼️</span>
+        <h4 class="font-bold text-slate-800 mt-2 text-sm">Poster Digital</h4>
+        <p class="text-xs text-slate-500 mt-1">Buat poster kampanye ukuran A3 dengan pesan etika digital yang kuat</p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-5 card-hover">
+        <span class="text-2xl">📊</span>
+        <h4 class="font-bold text-slate-800 mt-2 text-sm">Infografis</h4>
+        <p class="text-xs text-slate-500 mt-1">Visualisasikan data dan tips etika digital dalam bentuk infografis</p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-5 card-hover">
+        <span class="text-2xl">🎬</span>
+        <h4 class="font-bold text-slate-800 mt-2 text-sm">Video Pendek</h4>
+        <p class="text-xs text-slate-500 mt-1">Buat video 60-90 detik tentang etika digital (Reels/TikTok style)</p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-5 card-hover">
+        <span class="text-2xl">📱</span>
+        <h4 class="font-bold text-slate-800 mt-2 text-sm">Carousel Media Sosial</h4>
+        <p class="text-xs text-slate-500 mt-1">Buat carousel 5-10 slide untuk Instagram/sosmed</p>
+      </div>
+    </div>
+
+    <div class="bg-white border border-slate-200 rounded-xl p-6 mb-6">
+      <h3 class="font-bold text-slate-800 mb-3">📋 Panduan Proyek</h3>
+      <ol class="text-sm text-slate-600 space-y-2">
+        <li><strong>1.</strong> Pilih salah satu format produk di atas</li>
+        <li><strong>2.</strong> Tentukan sub-tema spesifik (contoh: anti-cyberbullying, bijak bermedia sosial, dll)</li>
+        <li><strong>3.</strong> Riset materi dan kumpulkan data pendukung</li>
+        <li><strong>4.</strong> Buat draft/storyboard</li>
+        <li><strong>5.</strong> Produksi menggunakan tools gratis (Canva, CapCut, dll)</li>
+        <li><strong>6.</strong> Review dengan teman (peer review)</li>
+        <li><strong>7.</strong> Finalisasi dan publikasikan</li>
+      </ol>
+    </div>
+
+    <div class="bg-white border border-slate-200 rounded-xl p-6">
+      <h3 class="font-bold text-slate-800 mb-3">📊 Rubrik Penilaian</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs border border-slate-200 rounded-lg">
+          <thead class="bg-slate-50">
+            <tr><th class="px-3 py-2 text-left">Aspek</th><th class="px-3 py-2">Sangat Baik (4)</th><th class="px-3 py-2">Baik (3)</th><th class="px-3 py-2">Cukup (2)</th><th class="px-3 py-2">Kurang (1)</th></tr>
+          </thead>
+          <tbody>
+            <tr class="border-t"><td class="px-3 py-2 font-medium">Konten</td><td class="px-3 py-2">Akurat, lengkap, mendalam</td><td class="px-3 py-2">Akurat, cukup lengkap</td><td class="px-3 py-2">Ada kesalahan minor</td><td class="px-3 py-2">Banyak kesalahan</td></tr>
+            <tr class="border-t bg-slate-50"><td class="px-3 py-2 font-medium">Desain</td><td class="px-3 py-2">Sangat menarik & profesional</td><td class="px-3 py-2">Menarik & rapi</td><td class="px-3 py-2">Cukup rapi</td><td class="px-3 py-2">Kurang rapi</td></tr>
+            <tr class="border-t"><td class="px-3 py-2 font-medium">Kreativitas</td><td class="px-3 py-2">Sangat kreatif & orisinal</td><td class="px-3 py-2">Kreatif</td><td class="px-3 py-2">Cukup kreatif</td><td class="px-3 py-2">Kurang kreatif</td></tr>
+            <tr class="border-t bg-slate-50"><td class="px-3 py-2 font-medium">Pesan Etika</td><td class="px-3 py-2">Sangat jelas & impactful</td><td class="px-3 py-2">Jelas</td><td class="px-3 py-2">Kurang jelas</td><td class="px-3 py-2">Tidak jelas</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+function renderDashboard() {
+  const quizData = appData.filter(d => d.type === 'quiz_result');
+  const aksiData = appData.filter(d => d.type && d.type.startsWith('aksi_'));
+  const lastScore = quizData.length > 0 ? quizData[quizData.length - 1].score : null;
+  
+  return `
+    <h2 class="text-2xl font-bold text-slate-800 mb-6">Dashboard Perkembangan</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+      <div class="bg-white border border-slate-200 rounded-xl p-5">
+        <p class="text-xs text-slate-500 mb-1">Skor Kuis Terakhir</p>
+        <p class="text-3xl font-extrabold ${lastScore !== null ? (lastScore >= 70 ? 'text-green-600' : 'text-amber-600') : 'text-slate-300'}">${lastScore !== null ? lastScore + '%' : '-'}</p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-5">
+        <p class="text-xs text-slate-500 mb-1">LKPD AKSI Selesai</p>
+        <p class="text-3xl font-extrabold text-blue-600">${aksiData.length}</p>
+      </div>
+      <div class="bg-white border border-slate-200 rounded-xl p-5">
+        <p class="text-xs text-slate-500 mb-1">Total Aktivitas</p>
+        <p class="text-3xl font-extrabold text-purple-600">${appData.length}</p>
+      </div>
+    </div>
+    
+    <div class="bg-white border border-slate-200 rounded-xl p-6 mb-6">
+      <h3 class="font-bold text-slate-800 mb-4">📈 Riwayat Kuis</h3>
+      ${quizData.length === 0 ? '<p class="text-sm text-slate-400">Belum ada data kuis. Kerjakan kuis terlebih dahulu.</p>' : `
+        <div class="space-y-2">
+          ${quizData.map((d, i) => `
+            <div class="flex items-center justify-between bg-slate-50 rounded-lg px-4 py-2">
+              <span class="text-sm text-slate-600">Percobaan ${i+1}</span>
+              <span class="text-sm font-bold ${d.score >= 70 ? 'text-green-600' : 'text-amber-600'}">${d.score}%</span>
+              <span class="text-xs text-slate-400">${new Date(d.created_at).toLocaleDateString('id-ID')}</span>
+            </div>
+          `).join('')}
+        </div>
+      `}
+    </div>
+
+    <div class="bg-white border border-slate-200 rounded-xl p-6">
+      <h3 class="font-bold text-slate-800 mb-4">📝 Riwayat LKPD AKSI</h3>
+      ${aksiData.length === 0 ? '<p class="text-sm text-slate-400">Belum ada data LKPD. Kerjakan LKPD AKSI terlebih dahulu.</p>' : `
+        <div class="space-y-2">
+          ${aksiData.map(d => {
+            const c = cases.find(x => x.id === d.case_id);
+            return `<div class="flex items-center justify-between bg-slate-50 rounded-lg px-4 py-2">
+              <span class="text-sm text-slate-600">${c ? c.title : d.case_id} - ${d.question_key}</span>
+              <span class="text-xs text-slate-400">${new Date(d.created_at).toLocaleDateString('id-ID')}</span>
+            </div>`;
+          }).join('')}
+        </div>
+      `}
+    </div>
+  `;
+}
+
+// ===== TOAST =====
+function showToast(msg, type) {
+  const existing = document.getElementById('toast');
+  if (existing) existing.remove();
+  const toast = document.createElement('div');
+  toast.id = 'toast';
+  toast.className = `fixed bottom-4 right-4 z-50 px-4 py-3 rounded-lg text-sm font-medium shadow-lg transition ${type === 'success' ? 'bg-green-600 text-white' : 'bg-red-600 text-white'}`;
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 3000);
+}
+
+// ===== DATA SDK =====
+const dataHandler = {
+  onDataChanged(data) {
+    appData = data;
+    if (currentPage === 'dashboard') renderPage();
+  }
+};
+
+// ===== ELEMENT SDK =====
+window.elementSdk.init({
+  defaultConfig,
+  onConfigChange: async (config) => {
+    const title = document.getElementById('sidebar-title');
+    if (title) title.textContent = config.module_title || defaultConfig.module_title;
+    if (currentPage === 'beranda') renderPage();
+  },
+  mapToCapabilities: (config) => ({
+    recolorables: [
+      { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+      { get: () => config.primary_color || defaultConfig.primary_color, set: (v) => { config.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); } },
+      { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+      { get: () => config.accent_color || defaultConfig.accent_color, set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } },
+      { get: () => config.secondary_color || defaultConfig.secondary_color, set: (v) => { config.secondary_color = v; window.elementSdk.setConfig({ secondary_color: v }); } }
+    ],
+    borderables: [],
+    fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+    fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+  }),
+  mapToEditPanelValues: (config) => new Map([
+    ['module_title', config.module_title || defaultConfig.module_title],
+    ['school_name', config.school_name || defaultConfig.school_name],
+    ['teacher_name', config.teacher_name || defaultConfig.teacher_name]
+  ])
+});
+
+// Init Data SDK
+(async () => {
+  const result = await window.dataSdk.init(dataHandler);
+  if (!result.isOk) console.error('Data SDK init failed');
+})();
+
+// Initial render
+navigate('beranda');
+lucide.createIcons();
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a09cfc8c4804a8d3',t:'MTc4MTE0Mjg1Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
